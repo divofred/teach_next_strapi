@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_gender_woman_attributes",
+  "info": {
+    "displayName": "womanAttributes",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "height": {
+      "type": "integer",
+      "required": true
+    },
+    "weight": {
+      "type": "integer",
+      "required": true
+    },
+    "minDesiredSalary": {
+      "type": "integer",
+      "required": true,
+      "min": 1
+    }
+  }
+}

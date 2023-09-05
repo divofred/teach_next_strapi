@@ -1,0 +1,20 @@
+@import 'styles/variables.scss';
+
+.header {
+  border-bottom: 1px solid $gray-300;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 10rem;
+}
+.logo {
+  aspect-ratio: 3/1;
+  font-size: 3rem;
+  @include max_mobile {
+    margin-right: auto;
+    margin-left: auto;
+  }
+}

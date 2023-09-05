@@ -1,0 +1,104 @@
+///////////////////////////////////          COLORS
+
+$base-gradient: linear-gradient(90deg, #edc0bf 0, #c4caef 60%);
+$reverse-gradient: linear-gradient(90deg, #c4caef 0, #edc0bf 60%);
+
+// Grays
+$gray-100: #f5f5f5;
+$gray-200: #e0e0e0;
+$gray-300: #bdbdbd;
+$gray-400: #9e9e9e;
+$gray-500: #757575;
+$gray-600: #616161;
+$gray-700: #424242;
+$gray-800: #212121;
+
+// Blues
+$blue-100: #e3f2fd;
+$blue-200: #bbdefb;
+$blue-300: #90caf9;
+$blue-400: #64b5f6;
+$blue-500: #2196f3;
+$blue-600: #1e88e5;
+$blue-700: #1976d2;
+$blue-800: #1565c0;
+$blue-900: #0d47a1;
+
+// Reds
+$red-100: #ffebee;
+$red-200: #ffcdd2;
+$red-300: #ef9a9a;
+$red-400: #e57373;
+$red-500: #f44336;
+$red-600: #e53935;
+$red-700: #d32f2f;
+$red-800: #c62828;
+$red-900: #b71c1c;
+
+// Purples
+$purple-100: #f3e5f5;
+$purple-200: #e1bee7;
+$purple-300: #ce93d8;
+$purple-400: #ba68c8;
+$purple-500: #9c27b0;
+$purple-600: #8e24aa;
+$purple-700: #7b1fa2;
+$purple-800: #6a1b9a;
+$purple-900: #4a148c;
+
+// Greens
+$green-100: #e8f5e9;
+$green-200: #c8e6c9;
+$green-300: #a5d6a7;
+$green-400: #81c784;
+$green-500: #4caf50;
+$green-600: #43a047;
+$green-700: #388e3c;
+$green-800: #2e7d32;
+$green-900: #1b5e20;
+
+// Whites
+$white: #ffffff;
+$black: #000000;
+
+///////////////////////////////////          FONT-SIZE
+
+$text-sm: 1rem;
+$text-md: 1.2rem;
+$text-xl: 1.5rem;
+$text-xxl: 2rem;
+$text-xxxl: 3rem;
+
+///////////////////////////////////          BREAKPOINTS
+
+$mobile: 769px;
+$tablet: 1025px;
+$desktop: 1441px;
+
+//Mixins //----------PC FIRST
+@mixin max_custom($width) {
+  @media (max-width: $width) {
+    @content;
+  }
+}
+@mixin max_mobile {
+  @media (max-width: $mobile) {
+    @content;
+  }
+}
+@mixin max_tablet {
+  @media (max-width: $tablet) {
+    @content;
+  }
+}
+@mixin max_desktop {
+  @media (max-width: $desktop) {
+    @content;
+  }
+}
+
+:export {
+  mobile: $mobile;
+  tablet: $tablet;
+  desktop: $desktop;
+}

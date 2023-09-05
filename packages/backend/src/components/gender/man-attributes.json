@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_gender_man_attributes",
+  "info": {
+    "displayName": "manAttributes",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "height": {
+      "type": "integer"
+    },
+    "weight": {
+      "type": "integer"
+    },
+    "salary": {
+      "type": "integer",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,253 @@
+@import 'styles/variables.scss';
+
+.signup {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  margin: 2rem 0;
+  width: 100%;
+  @include max_tablet {
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 3rem;
+  }
+}
+.wrapper {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  @include max_mobile {
+    margin-bottom: 5rem;
+  }
+
+  .switchRole {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .signupForm {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.5rem;
+    backdrop-filter: blur(8.5px);
+    -webkit-backdrop-filter: blur(8.5px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 0.2rem;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 1.5rem;
+    min-width: 32rem;
+    height: 100%;
+    min-height: 35rem;
+  }
+
+  .switchButton {
+    transition: background-color 0.2s ease-in-out;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    background-color: $gray-200;
+    padding: 1rem 2rem;
+    color: $white;
+    font-weight: 400;
+    font-size: 16px;
+    &_man {
+      background-color: #64b5f6;
+    }
+    &_woman {
+      background-color: #ef9a9a;
+    }
+  }
+}
+
+.inlineInputsContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.inlineInputsContainer .inputWrapper {
+  padding-right: 20px;
+}
+
+.inputWrapper {
+  position: relative;
+  padding: 1rem 2rem;
+  width: 100%;
+  height: 6rem;
+  .input {
+    outline: 0;
+    border: 0;
+    border-bottom: 1px solid rgba(65, 62, 62, 0.55);
+    background: transparent;
+    padding: 7px 0;
+    width: 100%;
+    color: #383636;
+    font-size: 1.6rem;
+
+    &::placeholder {
+      color: transparent;
+    }
+
+    &:placeholder-shown ~ .inputLabel {
+      top: 20px;
+      cursor: text;
+      font-size: 1.6rem;
+    }
+  }
+
+  .inputLabel {
+    display: block;
+    position: absolute;
+    top: 0;
+    transition: 0.2s;
+    color: rgba(75, 72, 72, 0.62);
+    font-size: 1.2rem;
+    user-select: none;
+    &:focus {
+      border-width: 3px;
+
+      padding-bottom: 6px;
+      font-weight: 700;
+      ~ .inputLabel {
+        display: block;
+        position: absolute;
+        top: 0;
+        transition: 0.2s;
+        font-weight: 700;
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+.errorMessage {
+  color: $red-500;
+  font-weight: 300;
+  font-size: 1.1rem;
+  text-align: center;
+}
+.selectWrapper {
+  height: 5rem;
+  .select {
+    border: 1px solid $gray-200;
+    border-radius: 4px;
+    background-color: $white;
+    padding: 8px;
+    color: $gray-800;
+    font-weight: bold;
+    font-size: 1.5rem;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px $blue-200;
+      border-color: $blue-500;
+    }
+  }
+}
+
+.signUpButton {
+  align-self: center;
+  transition: background-color 0.2s ease-in-out;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  background-color: $blue-500;
+  padding: 1rem 1.5rem;
+  width: fit-content;
+  color: $white;
+  font-weight: 500;
+  font-size: $text-xl;
+
+  &:hover {
+    background-color: $blue-600;
+  }
+
+  &:active {
+    background-color: $blue-700;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: $red-100;
+    pointer-events: none;
+  }
+}
+
+.switch {
+  font-size: $text-md;
+  span {
+    cursor: pointer;
+    padding-left: 0.2rem;
+    color: $purple-700;
+  }
+}
+// Убирает стрелочки у инпутов с типом number
+.clearArrowsInput::-webkit-inner-spin-button,
+.clearArrowsInput::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+.acceptTerms {
+  display: flex;
+  gap: 1rem;
+
+  label {
+    font-size: $text-sm;
+    a {
+      color: $purple-700;
+    }
+  }
+}
+
+.captcha {
+  align-self: center;
+}
+
+.swiper {
+  width: 50vw;
+  @include max_tablet {
+    width: 100%;
+  }
+}
+
+.cardWrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  .rulesList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 50%;
+
+    .rulesItem {
+      font-size: $text-xl;
+      &:first-child {
+        color: $purple-800;
+        font-size: $text-xxl;
+      }
+      @include max_mobile {
+        font-size: $text-sm;
+        &:first-child {
+          font-size: $text-md;
+        }
+      }
+    }
+  }
+  .cardImg {
+    display: block;
+    border-radius: 4px;
+    width: 50%;
+    height: 100%;
+    object-fit: cover;
+  }
+}

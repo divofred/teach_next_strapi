@@ -1,0 +1,32 @@
+@import 'styles/variables.scss';
+
+.rules {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  .heading {
+    font-size: $text-xxxl;
+  }
+  .rulesList {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    .priceItem {
+      color: $blue-700;
+      font-weight: bold;
+      span {
+        color: $purple-500;
+        font-weight: bold;
+      }
+    }
+    li {
+      text-align: left;
+    }
+  }
+  a {
+    margin-bottom: 2rem;
+    color: $purple-700;
+    font-weight: bold;
+  }
+}

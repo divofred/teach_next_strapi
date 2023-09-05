@@ -1,0 +1,172 @@
+{
+  "kind": "collectionType",
+  "collectionName": "up_users",
+  "info": {
+    "name": "user",
+    "description": "",
+    "singularName": "user",
+    "pluralName": "users",
+    "displayName": "User"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "username": {
+      "type": "string",
+      "minLength": 3,
+      "unique": true,
+      "configurable": false,
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "minLength": 6,
+      "configurable": false,
+      "required": true
+    },
+    "provider": {
+      "type": "string",
+      "configurable": false
+    },
+    "password": {
+      "type": "password",
+      "minLength": 6,
+      "configurable": false,
+      "private": true,
+      "searchable": false
+    },
+    "resetPasswordToken": {
+      "type": "string",
+      "configurable": false,
+      "private": true,
+      "searchable": false
+    },
+    "confirmationToken": {
+      "type": "string",
+      "configurable": false,
+      "private": true,
+      "searchable": false
+    },
+    "confirmed": {
+      "type": "boolean",
+      "default": false,
+      "configurable": false
+    },
+    "blocked": {
+      "type": "boolean",
+      "default": false,
+      "configurable": false
+    },
+    "role": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.role",
+      "inversedBy": "users",
+      "configurable": false
+    },
+    "gender": {
+      "type": "enumeration",
+      "enum": [
+        "male",
+        "female"
+      ],
+      "required": true
+    },
+    "manAttributes": {
+      "type": "component",
+      "repeatable": false,
+      "component": "gender.man-attributes"
+    },
+    "womanAttributes": {
+      "displayName": "womanAttributes",
+      "type": "component",
+      "repeatable": false,
+      "component": "gender.woman-attributes"
+    },
+    "fullName": {
+      "type": "string",
+      "required": true
+    },
+    "isOnline": {
+      "type": "boolean"
+    },
+    "age": {
+      "type": "integer",
+      "required": true,
+      "min": 18,
+      "max": 100
+    },
+    "city": {
+      "type": "enumeration",
+      "enum": [
+        "Москва",
+        "Санкт-Петербург",
+        "Нижний Новгород",
+        "Екатеринбург",
+        "Ростов-на-Дону",
+        "Белгород",
+        "Новосибирск",
+        "Казань"
+      ],
+      "required": true,
+      "default": "Москва"
+    },
+    "favorites": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::users-permissions.user"
+    },
+    "photo1": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "photo2": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "photo3": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "hair": {
+      "type": "enumeration",
+      "enum": [
+        "блонд",
+        "брюнет",
+        "шатен",
+        "рыжий",
+        "русый",
+        "седой"
+      ]
+    },
+    "description": {
+      "type": "text"
+    },
+    "banned": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::users-permissions.user"
+    },
+    "isPaidMan": {
+      "type": "boolean",
+      "default": false
+    },
+    "isPaidService": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

@@ -27,11 +27,6 @@ const Chats: React.FC = () => {
         <h2>Диалоги:</h2>
       </div>
       <div className={styles.messageBlock}>
-        {user?.currentChat && (
-          <Link href={`/users/${user?.currentChat?.id}` || ''}>
-            <h1>{user?.currentChat?.fullName}👀</h1>
-          </Link>
-        )}
         <ul ref={messageContainerRef}></ul>
         <input type="text" />
         <button className={styles.sendMsg}>Отправить сообщение</button>

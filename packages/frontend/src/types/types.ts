@@ -65,8 +65,4 @@ export type RegisterForm = Woman | Man
 export type loginType = {
   jwt: string | null
   user: User | null
-  currentChat: null | {
-    id: number
-    fullName: string
-  }
 }

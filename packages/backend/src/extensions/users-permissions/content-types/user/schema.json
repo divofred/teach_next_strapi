@@ -100,17 +100,13 @@
     "city": {
       "type": "enumeration",
       "enum": [
-        "Москва",
-        "Санкт-Петербург",
-        "Нижний Новгород",
-        "Екатеринбург",
-        "Ростов-на-Дону",
-        "Белгород",
-        "Новосибирск",
-        "Казань"
+        "Moscow",
+        "Ekaterinburg",
+        "Novosibirsk",
+        "Kazan"
       ],
       "required": true,
-      "default": "Москва"
+      "default": "Moscow"
     },
     "favorites": {
       "type": "relation",

@@ -77,7 +77,7 @@ const Home: React.FC<HomeTypes> = ({ users }) => {
 
   return (
     <section className={styles.wrapper}>
-      <h1 className={styles.heading}>Найди свою любовь</h1>
+      <h1 className={styles.heading}>Find your pokemon</h1>
       {user && user.gender === 'male' && (
         <div className={styles.filters}>
           <div className={styles.filterGroup}>

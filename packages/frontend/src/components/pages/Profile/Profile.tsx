@@ -38,7 +38,6 @@ const Profile: React.FC = ({
   const user = useTypedSelector((state) => state?.user)
   const router = useRouter()
   const hasMounted = useHasMounted()
-  const { setChat } = useActions()
   const strapi_url = process.env.CMS_LINK
   const {
     register,
@@ -280,7 +279,6 @@ const Profile: React.FC = ({
     if (!user?.jwt || !user?.user) {
       return router.push('/signin')
     } else if (user?.jwt && user?.user) {
-      setChat({ id, fullName })
       return router.push('/chats')
     }
   }
@@ -615,15 +613,11 @@ const Profile: React.FC = ({
                   className={styles.select}
                   defaultValue={user?.user?.city}
                 >
-                  <option value="--Укажите город">--Укажите город*</option>
-                  <option value="Москва">Москва</option>
-                  <option value="Санкт-Петербург">Санкт-Петербург</option>
-                  <option value="Нижний Новгород">Нижний Новгород</option>
-                  <option value="Екатеринбург">Екатеринбург</option>
-                  <option value="Ростов-на-Дону">Ростов-на-Дону</option>
-                  <option value="Белгород">Белгород</option>
-                  <option value="Новосибирск">Новосибирск</option>
-                  <option value="Казань">Казань</option>
+                  <option value="--Укажите город">--City*</option>
+                  <option value="Moscow">Moscow</option>
+                  <option value="Ekaterinburg">Ekaterinburg</option>
+                  <option value="Novosibirsk">Novosibirsk</option>
+                  <option value="Kazan">Kazan</option>
                 </select>
               ) : router?.pathname === '/profile' ? (
                 user?.user?.city && <p>{user?.user?.city}</p>

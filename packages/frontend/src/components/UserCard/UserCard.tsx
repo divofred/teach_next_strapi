@@ -16,7 +16,6 @@ const UserCard: FC<UserCardTypes> = ({ fullName, id, photo1, city, age, descript
   const user = useTypedSelector((state) => state?.user)
   const strapi_url = process.env.CMS_LINK
   const router = useRouter()
-  const { setChat } = useActions()
 
   const isFavorite = user?.user?.favorites?.some((obj) => obj?.id === id)
 
@@ -70,7 +69,6 @@ const UserCard: FC<UserCardTypes> = ({ fullName, id, photo1, city, age, descript
     if (!user?.jwt || !user?.user) {
       return router.push('/signin')
     } else if (user?.jwt && user?.user) {
-      setChat({ id, fullName })
       return router.push('/chats')
     }
   }
@@ -101,12 +99,12 @@ const UserCard: FC<UserCardTypes> = ({ fullName, id, photo1, city, age, descript
       </Link>
       <div className={styles.actions}>
         <button onClick={handleClickMessage} disabled={isDisabled}>
-          Написать
+          Message
         </button>
         <button onClick={handleClickAddFavourite} disabled={isFavorite}>
-          Сохранить
+          Save to favorite
         </button>
-        <button onClick={handleBan}>Заблокировать</button>
+        <button onClick={handleBan}>Block</button>
       </div>
     </article>
   )

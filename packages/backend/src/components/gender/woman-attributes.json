@@ -1,7 +1,7 @@
 {
   "collectionName": "components_gender_woman_attributes",
   "info": {
-    "displayName": "womanAttributes",
+    "displayName": "PokewomanAttributes",
     "description": ""
   },
   "options": {},
@@ -14,7 +14,7 @@
       "type": "integer",
       "required": true
     },
-    "minDesiredSalary": {
+    "minDesiredPower": {
       "type": "integer",
       "required": true,
       "min": 1

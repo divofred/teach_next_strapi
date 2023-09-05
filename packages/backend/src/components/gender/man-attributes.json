@@ -1,7 +1,7 @@
 {
   "collectionName": "components_gender_man_attributes",
   "info": {
-    "displayName": "manAttributes",
+    "displayName": "PokemanAttributes",
     "description": ""
   },
   "options": {},
@@ -12,7 +12,7 @@
     "weight": {
       "type": "integer"
     },
-    "salary": {
+    "minPower": {
       "type": "integer",
       "required": true
     }

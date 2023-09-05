@@ -23,7 +23,7 @@ const UserCard: FC<UserCardTypes> = ({ fullName, id, photo1, city, age, descript
   const isDisabled =
     user?.user?.banned?.some((obj) => obj.id === id) ||
     banned?.some((obj) => obj.id === user?.user?.id) ||
-    (user?.user?.gender === 'male' && !user?.user?.isPaidMan) ||
+    user?.user?.gender === 'male' ||
     (user?.user?.gender === 'female' &&
       (!user?.user?.photo1 || !user?.user?.photo2 || !user?.user?.photo3))
 

@@ -4,21 +4,13 @@ export interface FormCommon {
   password: string
   gender: 'male' | 'female'
   age: number
-  city:
-    | 'Москва'
-    | 'Санкт-Петербург'
-    | 'Нижний Новгород'
-    | 'Екатеринбург'
-    | 'Ростов-на-Дону'
-    | 'Белгород'
-    | 'Новосибирск'
-    | 'Казань'
+  city: 'Moscow' | 'Ekaterinburg' | 'Novosibirsk' | 'Kazan'
   hair?: 'блонд' | 'брюнет' | 'шатен' | 'рыжий' | 'русый' | 'седой'
   height?: string
   weight?: string
   description?: string
-  salary?: string
-  minDesiredSalary?: string
+  minPower?: string
+  minDesiredPower?: string
 }
 
 export type Photo = {
@@ -34,12 +26,11 @@ export interface User extends FormCommon {
   createdAt: string
   updatedAt: string
   provider: 'local'
-  manAttributes?: Man
+  PokemanAttributes?: Man
   description?: string
-  womanAttributes?: Woman
+  PokewomanAttributes?: Woman
   favorites?: User[]
   banned?: User[]
-  isPaidMan?: boolean
   isPaidService?: boolean
   photo1?: Photo
   photo2?: Photo
@@ -59,14 +50,14 @@ export type Woman = Base<{
   gender: 'female'
   height: number
   weight: number
-  minDesiredSalary: number
+  minDesiredPower: number
 }>
 
 export type Man = Base<{
   gender: 'male'
   height: number
   weight: number
-  salary: number
+  minPower: number
 }>
 
 export type RegisterForm = Woman | Man

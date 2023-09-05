@@ -22,26 +22,6 @@ type SignupProps = {
 
 const options: EmblaOptionsType = { align: 'center' }
 const slides = [
-  // {
-  //   img: '/swiper/girl_sitting2',
-  //   rules: [
-  //     'Регистрация для всех пользователей бесплатная',
-  //     'Знакомство для мужчин доступно после оплаты аккаунта',
-  //     'Никаких подписок, плата взимается один раз за дальнейшее пользование всеми возможностями сайта',
-  //     'Чтобы знакомиться на сайте девушки должны прикрепить 3 фотографии: лицо анфас, средний или крупный план без макияжа; фото в полный рост; любая фотография на выбор девушки, где отчетливо видно ее лицо',
-  //     'На сайте запрещено делать предложения сексуальных услуг. Сайт только для поиска партнеров для построения отношений с перспективой брака.',
-  //     'На сайте действует строгая система банов',
-  //     'Этот сайт, как "тиндер - топ профили", как "все серьезно" в пьюр для осознанных мужчин и честных девушек, которые нацелены найти отношения с перспективой брака',
-  //     'Запрещено неуважительное отношение к собеседнику (мат, угрозы, немотивированная агрессия, просто неуважительное отношение).  При нарушении - блокировка на 1 день. При систематическом нарушении – удаление с сайта с запретом создания новых анкет.',
-  //     'Администрация оставляет за собой право удалять сообщения и блокировать аккаунты нарушителей правил без предупреждения, а также настаивать на соблюдении правил. В случае удаления анкеты с оплаченным балансом / действующими сервисами деньги НЕ ВОЗВРАЩАЮТСЯ.',
-  //     'лицо анфас, средний или крупный план без макияжа',
-  //     'фото в полный рост, где отчетливо видно лицо',
-  //     'любая фотография на выбор девушки, где также видно ее лицо',
-  // 'Atolin без непристойных предложений',
-  // 'Tinder - "топ профили" с функцией "ищу долгосрочно"',
-  // '"Все серьезно" в Pure с осознанными мужчинами и честными девушками',
-  //   ],
-  // },
   {
     img: '/swiper/man_woman.jpg',
     rules: [
@@ -62,7 +42,6 @@ const slides = [
       'Общение для мужчин доступно после оплаты аккаунта',
       'Никаких подписок, плата взимается один раз',
       'Цена MVP версии 5000 рублей - присоединяйся сегодня и навсегда!',
-      // 'При регистрации необходимо указать доход - эта информация не доступна для других пользователей, нужна для подбора партнера',
     ],
   },
   {
@@ -70,8 +49,6 @@ const slides = [
     rules: [
       'На сайте действует строгая система банов',
       'Соблюдайте правила общения онлайн и при встрече',
-      // 'Не указывайте ложную информацию о себе',
-      // 'Не забывайте нажимать кнопку "Договорился о встрече"',
     ],
   },
 ]
@@ -81,7 +58,6 @@ const Signup: React.FC<SignupProps> = ({ handleClickLogin }) => {
   const router = useRouter()
 
   const [gender, setGender] = useState<'male' | 'female'>('female')
-  const [isCaptchaPassed, setIsCaptchaPassed] = useState<boolean>(false)
   const [scrollProgress, setScrollProgress] = useState(0)
   const [emblaRef, emblaApi] = useEmblaCarousel(options)
 
@@ -132,10 +108,6 @@ const Signup: React.FC<SignupProps> = ({ handleClickLogin }) => {
     setValue(name, roundedValue, { shouldValidate: true })
   }
 
-  const recapchaChangeHandler: ReCAPTCHAProps['onChange'] = (value) => {
-    if (value) setIsCaptchaPassed(true)
-  }
-
   return (
     <section className={styles.signup}>
       <div className={styles.wrapper}>
@@ -146,7 +118,7 @@ const Signup: React.FC<SignupProps> = ({ handleClickLogin }) => {
               setGender('female')
             }}
           >
-            для девушек
+            Pokewoman
           </button>
           <button
             className={cn(styles.switchButton, gender === 'male' && styles.switchButton_man)}
@@ -154,7 +126,7 @@ const Signup: React.FC<SignupProps> = ({ handleClickLogin }) => {
               setGender('male')
             }}
           >
-            для мужчин
+            Pokeman
           </button>
         </div>
         <form className={styles.signupForm} onSubmit={handleSubmit(onSubmit)}>
@@ -169,21 +141,17 @@ const Signup: React.FC<SignupProps> = ({ handleClickLogin }) => {
                 name="fullName"
               />
               <label htmlFor="fullName" className={styles.inputLabel}>
-                имя*
+                name*
               </label>
               <p className={styles.errorMessage}>{errors.fullName && errors.fullName.message}</p>
             </div>
             <div className={styles.selectWrapper}>
               <select {...register('city')} className={styles.select}>
-                <option value="--Укажите город">--Укажите город*</option>
-                <option value="Москва">Москва</option>
-                <option value="Санкт-Петербург">Санкт-Петербург</option>
-                <option value="Нижний Новгород">Нижний Новгород</option>
-                <option value="Екатеринбург">Екатеринбург</option>
-                <option value="Ростов-на-Дону">Ростов-на-Дону</option>
-                <option value="Белгород">Белгород</option>
-                <option value="Новосибирск">Новосибирск</option>
-                <option value="Казань">Казань</option>
+                <option value="--Укажите город">--City*</option>
+                <option value="Moscow">Moscow</option>
+                <option value="Ekaterinburg">Ekaterinburg</option>
+                <option value="Novosibirsk">Novosibirsk</option>
+                <option value="Kazan">Kazan</option>
               </select>
               <p className={styles.errorMessage}>{errors.city && errors.city.message}</p>
             </div>
@@ -206,14 +174,14 @@ const Signup: React.FC<SignupProps> = ({ handleClickLogin }) => {
                 className={styles.input}
                 type="number"
                 {...register('age')}
-                placeholder="введите возраст"
+                placeholder="age"
                 min={18}
                 max={100}
                 id="age"
                 name="age"
               />
               <label htmlFor="age" className={styles.inputLabel}>
-                возраст*
+                age*
               </label>
               <p className={styles.errorMessage}>{errors.age && errors.age.message}</p>
             </div>
@@ -227,7 +195,7 @@ const Signup: React.FC<SignupProps> = ({ handleClickLogin }) => {
                 name="password"
               />
               <label htmlFor="password" className={styles.inputLabel}>
-                пароль*
+                password*
               </label>
               <p className={styles.errorMessage}>{errors.password && errors.password.message}</p>
             </div>
@@ -238,17 +206,17 @@ const Signup: React.FC<SignupProps> = ({ handleClickLogin }) => {
                   type="number"
                   min={1000}
                   max={2000000}
-                  {...register('salary')}
+                  {...register('minPower')}
                   placeholder="ваш доход (руб. в мес.)*"
-                  id="salary"
-                  name="salary"
+                  id="minPower"
+                  name="minPower"
                   onBlur={roundSalaryTo1000}
                 />
-                <label htmlFor="salary" className={styles.inputLabel}>
-                  ваш доход (руб. в мес.)*
+                <label htmlFor="minPower" className={styles.inputLabel}>
+                  your power*
                 </label>
                 <p className={styles.errorMessage}>
-                  {'salary' in errors && errors?.salary?.message}
+                  {'minPower' in errors && errors?.minPower?.message}
                 </p>
               </div>
             ) : (
@@ -259,17 +227,17 @@ const Signup: React.FC<SignupProps> = ({ handleClickLogin }) => {
                     type="number"
                     min={1000}
                     max={2000000}
-                    {...register('minDesiredSalary')}
+                    {...register('minDesiredPower')}
                     placeholder="доход мужчины (руб. в мес.)*"
-                    id="minDesiredSalary"
-                    name="minDesiredSalary"
+                    id="minDesiredPower"
+                    name="minDesiredPower"
                     onBlur={roundSalaryTo1000}
                   />
-                  <label htmlFor="minDesiredSalary" className={styles.inputLabel}>
-                    доход мужчины (руб. в мес.)*
+                  <label htmlFor="minDesiredPower" className={styles.inputLabel}>
+                    desired power*
                   </label>
                   <p className={styles.errorMessage}>
-                    {'minDesiredSalary' in errors && errors?.minDesiredSalary?.message}
+                    {'minDesiredPower' in errors && errors?.minDesiredPower?.message}
                   </p>
                 </div>
                 <div className={styles.inlineInputsContainer}>
@@ -286,7 +254,7 @@ const Signup: React.FC<SignupProps> = ({ handleClickLogin }) => {
                       placeholder="рост *"
                     />
                     <label htmlFor="height" className={styles.inputLabel}>
-                      рост *
+                      height *
                     </label>
                     <p className={styles.errorMessage}>
                       {errors?.height && errors?.height?.message}
@@ -305,7 +273,7 @@ const Signup: React.FC<SignupProps> = ({ handleClickLogin }) => {
                       name="weight"
                     />
                     <label htmlFor="weight" className={styles.inputLabel}>
-                      вес *
+                      weight *
                     </label>
                     <p className={styles.errorMessage}>
                       {errors?.weight && errors?.weight?.message}
@@ -318,19 +286,10 @@ const Signup: React.FC<SignupProps> = ({ handleClickLogin }) => {
           <div className={styles.acceptTerms}>
             <input type="checkbox" {...register('accept')} id="accept" name="accept" />
             <label htmlFor="accept">
-              Принимаю <a href="/rules"> правила пользования сайтом и оферту</a>
+              I agree <a href="/rules">with rules</a>
             </label>
           </div>
-          <ReCAPTCHA
-            className={styles.captcha}
-            sitekey="6LdgbegmAAAAABMHgwrOFohHkytDEJp690FQARCP"
-            onChange={recapchaChangeHandler}
-          />
-          <button
-            type="submit"
-            className={styles.signUpButton}
-            disabled={!isValid || !isCaptchaPassed}
-          >
+          <button type="submit" className={styles.signUpButton} disabled={!isValid}>
             Зарегистрироваться
           </button>
         </form>

@@ -1,10 +1,10 @@
 import cn from 'classnames'
+import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import Head from 'next/head'
 
 import { client } from '@/src/lib/client'
 
@@ -19,8 +19,8 @@ import styles from './Profile.module.scss'
 const Profile: React.FC = ({
   age,
   fullName,
-  manAttributes,
-  womanAttributes,
+  PokemanAttributes,
+  PokewomanAttributes,
   photo1,
   photo2,
   photo3,
@@ -93,7 +93,7 @@ const Profile: React.FC = ({
   const [selectedFile3, setSelectedFile3] = useState<File>()
 
   const isDisabled =
-    (user?.user?.gender === 'male' && !user?.user?.isPaidMan) ||
+    user?.user?.gender === 'male' ||
     (user?.user?.gender === 'female' &&
       (!user?.user?.photo1 || !user?.user?.photo2 || !user?.user?.photo3)) ||
     user?.user?.banned?.some((obj) => obj.id === user?.user?.id)
@@ -124,26 +124,26 @@ const Profile: React.FC = ({
         description: data.description || user?.user?.description,
         ...(user?.user?.gender === 'male'
           ? {
-              manAttributes: {
+              PokemanAttributes: {
                 ...(user?.user?.isPaidService
-                  ? { salary: data.salary || user?.user?.manAttributes?.salary }
-                  : { salary: user?.user?.manAttributes?.salary }),
-                height: data.height || user?.user?.manAttributes?.height,
-                weight: data.weight || user?.user?.manAttributes?.weight,
+                  ? { minPower: data.minPower || user?.user?.PokemanAttributes?.minPower }
+                  : { minPower: user?.user?.PokemanAttributes?.minPower }),
+                height: data.height || user?.user?.PokemanAttributes?.height,
+                weight: data.weight || user?.user?.PokemanAttributes?.weight,
               },
             }
           : {}),
         ...(user?.user?.gender === 'female'
           ? {
-              womanAttributes: {
+              PokewomanAttributes: {
                 ...(user?.user?.isPaidService
                   ? {
-                      minDesiredSalary:
-                        data.minDesiredSalary || user?.user?.womanAttributes?.minDesiredSalary,
+                      minDesiredPower:
+                        data.minDesiredPower || user?.user?.PokewomanAttributes?.minDesiredPower,
                     }
-                  : { minDesiredSalary: user?.user?.womanAttributes?.minDesiredSalary }),
-                height: data.height || user?.user?.womanAttributes?.height,
-                weight: data.weight || user?.user?.womanAttributes?.weight,
+                  : { minDesiredPower: user?.user?.PokewomanAttributes?.minDesiredPower }),
+                height: data.height || user?.user?.PokewomanAttributes?.height,
+                weight: data.weight || user?.user?.PokewomanAttributes?.weight,
               },
             }
           : {}),
@@ -158,8 +158,8 @@ const Profile: React.FC = ({
         if (
           user?.user?.isPaidService &&
           user.user?.gender === 'male' &&
-          data?.salary &&
-          +data?.salary !== user?.user?.manAttributes?.salary
+          data?.minPower &&
+          +data?.minPower !== user?.user?.PokemanAttributes?.minPower
         ) {
           await client.put(
             '/users/me',
@@ -174,8 +174,8 @@ const Profile: React.FC = ({
         } else if (
           user?.user?.isPaidService &&
           user.user?.gender === 'female' &&
-          data?.minDesiredSalary &&
-          +data?.minDesiredSalary !== user?.user?.womanAttributes?.minDesiredSalary
+          data?.minDesiredPower &&
+          +data?.minDesiredPower !== user?.user?.PokewomanAttributes?.minDesiredPower
         ) {
           await client.put(
             '/users/me',
@@ -347,31 +347,6 @@ const Profile: React.FC = ({
           >
             {fullName || user?.user?.fullName}
           </h1>
-          <div className={styles.payment}>
-            {router?.pathname === '/profile' &&
-              (!user?.user?.isPaidService ||
-                (user.user?.gender === 'male' && !user.user.isPaidMan)) && (
-                <p>при оплате укажите email регистрации</p>
-              )}
-            <div className={styles.iframeBtns}>
-              {router?.pathname === '/profile' &&
-                user.user?.gender === 'male' &&
-                !user.user.isPaidMan && (
-                  <iframe
-                    src="https://widgets.freekassa.ru?type=payment-button&currency=RUB&destination=Оплата аккаунта&theme=light&default_amount=5000&button_text=Оплатить аккаунт&button_size=24px&shopId=36370&s=4a8a56838fa9c0c96d98bb43be6fdee3"
-                    width="300"
-                    height="50"
-                  ></iframe>
-                )}
-              {router?.pathname === '/profile' && !user?.user?.isPaidService && (
-                <iframe
-                  src="https://widgets.freekassa.ru?type=payment-button&currency=RUB&destination=Оплата услуги&theme=light&default_amount=500&button_text=Оплатить услугу&button_size=24px&shopId=36370&s=42936c22133ff6e7b09591193e63814d"
-                  width="300"
-                  height="50"
-                ></iframe>
-              )}
-            </div>
-          </div>
         </div>
 
         {/* <button onClick={handleCreatePaymentUrl}>сформировать ссылку</button> */}
@@ -524,11 +499,6 @@ const Profile: React.FC = ({
           router?.pathname === '/profile' && (
             <p className={styles.warning}>загрузите фотографии, чтобы начать общаться</p>
           )}
-        {user?.user?.gender === 'male' &&
-          !user?.user?.isPaidMan &&
-          router?.pathname === '/profile' && (
-            <p className={styles.warning}>оплатите аккаунт, чтобы начать общаться</p>
-          )}
       </div>
       <div className={styles.metaBlock}>
         <form onSubmit={handleSubmit(onSubmit)} className={styles.formWrapper}>
@@ -575,16 +545,19 @@ const Profile: React.FC = ({
                   type="number"
                   {...register('height')}
                   defaultValue={
-                    user?.user?.manAttributes?.height || user?.user?.womanAttributes?.height
+                    user?.user?.PokemanAttributes?.height || user?.user?.PokewomanAttributes?.height
                   }
                 />
               ) : router?.pathname === '/profile' ? (
-                (user?.user?.manAttributes || user?.user?.womanAttributes) && (
-                  <p>{user?.user?.manAttributes?.height || user?.user?.womanAttributes?.height}</p>
+                (user?.user?.PokemanAttributes || user?.user?.PokewomanAttributes) && (
+                  <p>
+                    {user?.user?.PokemanAttributes?.height ||
+                      user?.user?.PokewomanAttributes?.height}
+                  </p>
                 )
               ) : (
-                (manAttributes || womanAttributes) && (
-                  <p>{manAttributes?.height || womanAttributes?.height}</p>
+                (PokemanAttributes || PokewomanAttributes) && (
+                  <p>{PokemanAttributes?.height || PokewomanAttributes?.height}</p>
                 )
               )}
             </li>
@@ -596,16 +569,19 @@ const Profile: React.FC = ({
                   type="number"
                   {...register('weight')}
                   defaultValue={
-                    user?.user?.manAttributes?.weight || user?.user?.womanAttributes?.weight
+                    user?.user?.PokemanAttributes?.weight || user?.user?.PokewomanAttributes?.weight
                   }
                 />
               ) : router?.pathname === '/profile' ? (
-                (user?.user?.manAttributes || user?.user?.womanAttributes) && (
-                  <p>{user?.user?.manAttributes?.weight || user?.user?.womanAttributes?.weight}</p>
+                (user?.user?.PokemanAttributes || user?.user?.PokewomanAttributes) && (
+                  <p>
+                    {user?.user?.PokemanAttributes?.weight ||
+                      user?.user?.PokewomanAttributes?.weight}
+                  </p>
                 )
               ) : (
-                (manAttributes || womanAttributes) && (
-                  <p>{manAttributes?.weight || womanAttributes?.weight}</p>
+                (PokemanAttributes || PokewomanAttributes) && (
+                  <p>{PokemanAttributes?.weight || PokewomanAttributes?.weight}</p>
                 )
               )}
             </li>
@@ -666,11 +642,11 @@ const Profile: React.FC = ({
                         min={1000}
                         max={2000000}
                         type="number"
-                        {...register('salary')}
-                        defaultValue={user?.user?.manAttributes?.salary}
+                        {...register('minPower')}
+                        defaultValue={user?.user?.PokemanAttributes?.minPower}
                       />
                     ) : (
-                      <p>{user?.user?.manAttributes?.salary}</p>
+                      <p>{user?.user?.PokemanAttributes?.minPower}</p>
                     )}
                   </li>
                 )}
@@ -684,11 +660,11 @@ const Profile: React.FC = ({
                         max={2000000}
                         className={styles.input}
                         type="number"
-                        {...register('minDesiredSalary')}
-                        defaultValue={user?.user?.womanAttributes?.minDesiredSalary}
+                        {...register('minDesiredPower')}
+                        defaultValue={user?.user?.PokewomanAttributes?.minDesiredPower}
                       />
                     ) : (
-                      <p>{user?.user?.womanAttributes?.minDesiredSalary}</p>
+                      <p>{user?.user?.PokewomanAttributes?.minDesiredPower}</p>
                     )}
                   </li>
                 )}

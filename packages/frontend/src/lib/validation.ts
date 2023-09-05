@@ -6,10 +6,10 @@ const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
 export const loginSchema: any = yup.object().shape({
   email: yup
     .string()
-    .required('введите почту, указанную при регистрации')
-    .email('введите почту в правильном формате')
-    .matches(emailRegex, 'формат почты неверный'),
-  password: yup.string().required('введите пароль'),
+    .required('enter email')
+    .email('enter correct email')
+    .matches(emailRegex, 'email is not correct'),
+  password: yup.string().required('enter password'),
 })
 
 const CommonSchema = {
@@ -37,7 +37,7 @@ const CommonSchema = {
 
 export const SchemaForMan = yup.object().shape({
   ...CommonSchema,
-  salary: yup
+  minPower: yup
     .number()
     .min(1000, 'мы не покажем его другим пользователям')
     .max(2000000, 'некорректное значение')
@@ -47,7 +47,7 @@ export const SchemaForMan = yup.object().shape({
 
 export const SchemaForWoman = yup.object().shape({
   ...CommonSchema,
-  minDesiredSalary: yup
+  minDesiredPower: yup
     .number()
     .min(1000, 'укажите ожидаемый доход мужчины')
     .max(2000000, 'некорректное значение')

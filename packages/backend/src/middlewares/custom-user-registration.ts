@@ -19,11 +19,11 @@ module.exports = (config, { strapi }) => {
         height,
         weight,
         isPaid,
-        salary,
-        minDesiredSalary,
+        minPower,
+        minDesiredPower,
         fullName,
-        manAttributes,
-        womanAttributes,
+        PokemanAttributes,
+        PokewomanAttributes,
       } = ctx?.request?.body
 
       if (gender === 'male') {
@@ -38,10 +38,10 @@ module.exports = (config, { strapi }) => {
           hair,
           isPaid,
           isOnline: true,
-          manAttributes: {
+          PokemanAttributes: {
             height,
             weight,
-            salary,
+            minPower,
           },
         }
       } else if (gender === 'female') {
@@ -55,20 +55,20 @@ module.exports = (config, { strapi }) => {
           hair,
           fullName,
           isOnline: true,
-          womanAttributes: {
+          PokewomanAttributes: {
             height,
             weight,
-            minDesiredSalary,
+            minDesiredPower,
           },
         }
       } else {
         return ctx.badRequest('Unknown gender')
       }
 
-      if (gender === 'male' && womanAttributes) {
+      if (gender === 'male' && PokewomanAttributes) {
         return ctx.badRequest('Men cannot post in women field.')
       }
-      if (gender === 'female' && manAttributes) {
+      if (gender === 'female' && PokemanAttributes) {
         return ctx.badRequest('Women cannot post in men field.')
       }
     }

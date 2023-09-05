@@ -1,9 +1,12 @@
 import cn from 'classnames'
 import React, { useState } from 'react'
+
 import { useHasMounted } from '@/src/hooks/useHasMounted'
 import { useTypedSelector } from '@/src/hooks/useTypedSelector'
+
 import { HomeTypes } from './_types'
 import styles from './Home.module.scss'
+
 import UserCard from '../../UserCard/UserCard'
 
 const Home: React.FC<HomeTypes> = ({ users }) => {
@@ -36,15 +39,15 @@ const Home: React.FC<HomeTypes> = ({ users }) => {
       }
       if (
         filters.minHeight &&
-        u.womanAttributes?.height &&
-        u.womanAttributes.height < parseInt(filters.minHeight)
+        u.PokewomanAttributes?.height &&
+        u.PokewomanAttributes.height < parseInt(filters.minHeight)
       ) {
         return false
       }
       if (
         filters.maxWeight &&
-        u.womanAttributes?.weight &&
-        u.womanAttributes.weight > parseInt(filters.maxWeight)
+        u.PokewomanAttributes?.weight &&
+        u.PokewomanAttributes.weight > parseInt(filters.maxWeight)
       ) {
         return false
       }
@@ -55,9 +58,9 @@ const Home: React.FC<HomeTypes> = ({ users }) => {
     })
   } else if (user && user?.gender === 'female') {
     filteredUsers = users?.filter((u) => {
-      if (!u?.manAttributes?.salary) return
-      if (!user?.womanAttributes?.minDesiredSalary) return
-      return u.manAttributes.salary >= user.womanAttributes.minDesiredSalary
+      if (!u?.PokemanAttributes?.minPower) return
+      if (!user?.PokewomanAttributes?.minDesiredPower) return
+      return u.PokemanAttributes.minPower >= user.PokewomanAttributes.minDesiredPower
     })
   } else {
     filteredUsers = users?.filter((u) => u?.gender === 'female')
@@ -125,15 +128,11 @@ const Home: React.FC<HomeTypes> = ({ users }) => {
               value={filters.city}
               onChange={(e) => handleFilterChange('city', e.target.value)}
             >
-              <option value="">Все города</option>
-              <option value="Москва">Москва</option>
-              <option value="Санкт-Петербург">Санкт-Петербург</option>
-              <option value="Нижний Новгород">Нижний Новгород</option>
-              <option value="Екатеринбург">Екатеринбург</option>
-              <option value="Ростов-на-Дону">Ростов-на-Дону</option>
-              <option value="Белгород">Белгород</option>
-              <option value="Новосибирск">Новосибирск</option>
-              <option value="Казань">Казань</option>
+              <option value="">All cities</option>
+              <option value="Moscow">Moscow</option>
+              <option value="Ekaterinburg">Ekaterinburg</option>
+              <option value="Novosibirsk">Novosibirsk</option>
+              <option value="Kazan">Kazan</option>
             </select>
           </div>
         </div>

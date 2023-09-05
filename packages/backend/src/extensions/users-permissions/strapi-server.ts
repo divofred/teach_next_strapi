@@ -2,6 +2,7 @@ const _ = require('lodash')
 
 module.exports = (plugin) => {
   const getController = (name) => {
+    //@ts-ignore
     return strapi.plugins['users-permissions'].controller(name)
   }
 
@@ -17,8 +18,8 @@ module.exports = (plugin) => {
     // Pick only specific fields for security
     const newData = _.pick(ctx.request.body, [
       'email',
-      'manAttributes',
-      'womanAttributes',
+      'PokemanAttributes',
+      'PokewomanAttributes',
       'age',
       'city',
       'description',
@@ -33,6 +34,7 @@ module.exports = (plugin) => {
 
     // Make sure there is no duplicate user with the same email
     if (newData?.email) {
+      //@ts-ignore
       const userWithSameEmail = await strapi
         .query('plugin::users-permissions.user')
         .findOne({ where: { email: newData.email.toLowerCase() } })
@@ -43,11 +45,11 @@ module.exports = (plugin) => {
       newData.email = newData.email.toLowerCase()
     }
 
-    if (user.gender === 'male' && newData?.womanAttributes) {
+    if (user.gender === 'male' && newData?.PokewomanAttributes) {
       return ctx.badRequest('Cant update woman fields')
     }
 
-    if (user.gender === 'female' && newData?.manAttributes) {
+    if (user.gender === 'female' && newData?.PokemanAttributes) {
       return ctx.badRequest('Cant update man fields')
     }
 
@@ -61,14 +63,14 @@ module.exports = (plugin) => {
     //   delete newData.confirmPassword;
     // }
 
-    // if (newData?.manAttributes?.height) {
+    // if (newData?.PokemanAttributes?.height) {
     //   const userWithSameManAttributes = await strapi
     //     .query('plugin::users-permissions.user')
-    //     .findOne({ where: { manAttributes: { height: newData.manAttributes.height } } });
+    //     .findOne({ where: { PokemanAttributes: { height: newData.PokemanAttributes.height } } });
     //   if (userWithSameManAttributes && userWithSameManAttributes.id != user.id) {
     //     return ctx.badRequest('Email already taken');
     //   }
-    //   newData.manAttributes.height = newData.manAttributes.height;
+    //   newData.PokemanAttributes.height = newData.PokemanAttributes.height;
     // }
 
     // Reconstruct context so we can pass to the controller

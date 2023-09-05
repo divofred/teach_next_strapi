@@ -59,7 +59,7 @@ const Signin: React.FC<SigninTypes> = ({ handleClickRegistration }) => {
                 className={styles.input}
               />
               <label htmlFor="email" className={styles.inputLabel}>
-                введите email
+                email
               </label>
             </div>
             <div className={styles.inputWrapper}>
@@ -73,20 +73,20 @@ const Signin: React.FC<SigninTypes> = ({ handleClickRegistration }) => {
                 className={styles.input}
               />
               <label htmlFor="password" className={styles.inputLabel}>
-                введите пароль
+                password
               </label>
             </div>
           </div>
 
           {error || Object.values(errors)?.length ? (
-            <p className={styles.error}>Введите данные, указанные при регистрации</p>
+            <p className={styles.error}>Enter your registration data</p>
           ) : null}
           <button type="submit" className={styles.signInBtn} disabled={!isValid}>
-            Войти
+            Login
           </button>
         </form>
         <p className={styles.switch}>
-          Новый пользователь? <span onClick={handleClickRegistration}>Зарегистрироваться</span>
+          New user? <span onClick={handleClickRegistration}>Register</span>
         </p>
       </div>
       <div className={styles.signInPicContainer} />

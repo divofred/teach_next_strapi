@@ -73,13 +73,13 @@
       ],
       "required": true
     },
-    "manAttributes": {
+    "PokemanAttributes": {
       "type": "component",
       "repeatable": false,
       "component": "gender.man-attributes"
     },
-    "womanAttributes": {
-      "displayName": "womanAttributes",
+    "PokewomanAttributes": {
+      "displayName": "PokewomanAttributes",
       "type": "component",
       "repeatable": false,
       "component": "gender.woman-attributes"
@@ -159,10 +159,6 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "plugin::users-permissions.user"
-    },
-    "isPaidMan": {
-      "type": "boolean",
-      "default": false
     },
     "isPaidService": {
       "type": "boolean",

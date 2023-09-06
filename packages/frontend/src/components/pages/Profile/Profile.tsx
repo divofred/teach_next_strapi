@@ -393,7 +393,7 @@ const Profile: React.FC = ({
               </label>
               {router?.pathname === '/profile' && (photo1 || user?.user?.photo1) && (
                 <button className={styles.deletePhotoIcon} onClick={handleDeletePhoto1}>
-                  удалить
+                  delete
                 </button>
               )}
             </div>
@@ -477,7 +477,7 @@ const Profile: React.FC = ({
                 className={styles.uploadPhotosBtn}
                 style={{ opacity: uploading ? '.5' : '1' }}
               >
-                {uploading ? 'Загружаю...' : 'Загрузить выбранные фото'}
+                {uploading ? 'Uploading...' : 'Upload selected photos'}
               </button>
             )}
           </div>
@@ -492,11 +492,6 @@ const Profile: React.FC = ({
             </button>
           </div>
         )}
-        {user?.user?.gender === 'female' &&
-          (!user?.user?.photo1 || !user?.user?.photo2 || !user?.user?.photo3) &&
-          router?.pathname === '/profile' && (
-            <p className={styles.warning}>загрузите фотографии, чтобы начать общаться</p>
-          )}
       </div>
       <div className={styles.metaBlock}>
         <form onSubmit={handleSubmit(onSubmit)} className={styles.formWrapper}>
@@ -517,10 +512,10 @@ const Profile: React.FC = ({
             )}
           </div>
 
-          <h2>Данные:</h2>
+          <h2>INFO:</h2>
           <ul className={styles.metaNumbers}>
             <li className={styles.metaItem}>
-              <div className={styles.attributeName}>возраст</div>
+              <div className={styles.attributeName}>age</div>
               {isEditing ? (
                 <input
                   className={styles.input}
@@ -536,7 +531,7 @@ const Profile: React.FC = ({
             </li>
 
             <li className={styles.metaItem}>
-              <div className={styles.attributeName}>рост</div>
+              <div className={styles.attributeName}>height</div>
               {isEditing ? (
                 <input
                   className={styles.input}
@@ -560,7 +555,7 @@ const Profile: React.FC = ({
               )}
             </li>
             <li className={styles.metaItem}>
-              <div className={styles.attributeName}>вес</div>
+              <div className={styles.attributeName}>weight</div>
               {isEditing ? (
                 <input
                   className={styles.input}
@@ -584,20 +579,17 @@ const Profile: React.FC = ({
               )}
             </li>
             <li className={styles.metaItem}>
-              <div className={styles.attributeName}>цвет волос</div>
+              <div className={styles.attributeName}>hair color</div>
               {isEditing ? (
                 <select
                   {...register('hair')}
                   className={styles.select}
                   defaultValue={user?.user?.hair}
                 >
-                  <option value="брюнет">--Цвет волос*</option>
-                  <option value="блонд">блонд</option>
-                  <option value="брюнет">брюнет</option>
-                  <option value="шатен">шатен</option>
-                  <option value="рыжий">рыжий</option>
-                  <option value="русый">русый</option>
-                  <option value="седой">седой</option>
+                  <option value="blonde">--Hair color*</option>
+                  <option value="blonde">blonde</option>
+                  <option value="dark">dark</option>
+                  <option value="ginger">ginger</option>
                 </select>
               ) : router?.pathname === '/profile' ? (
                 user?.user?.hair && <p>{user?.user?.hair}</p>
@@ -606,7 +598,7 @@ const Profile: React.FC = ({
               )}
             </li>
             <li className={styles.metaItem}>
-              <div className={styles.attributeName}>город</div>
+              <div className={styles.attributeName}>city</div>
               {isEditing ? (
                 <select
                   {...register('city')}
@@ -629,7 +621,7 @@ const Profile: React.FC = ({
               <>
                 {user?.user?.gender === 'male' && (
                   <li className={styles.metaItem}>
-                    <div className={styles.attributeName}>доход</div>
+                    <div className={styles.attributeName}>power</div>
                     {isEditing && user?.user?.isPaidService ? (
                       <input
                         className={styles.input}
@@ -647,7 +639,7 @@ const Profile: React.FC = ({
 
                 {user?.user?.gender === 'female' && (
                   <li className={styles.metaItem}>
-                    <div className={styles.attributeName}>доход от</div>
+                    <div className={styles.attributeName}>min power</div>
                     {isEditing && user?.user?.isPaidService ? (
                       <input
                         min={1000}

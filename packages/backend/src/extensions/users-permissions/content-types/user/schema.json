@@ -140,12 +140,9 @@
     "hair": {
       "type": "enumeration",
       "enum": [
-        "блонд",
-        "брюнет",
-        "шатен",
-        "рыжий",
-        "русый",
-        "седой"
+        "blonde",
+        "dark",
+        "ginger"
       ]
     },
     "description": {

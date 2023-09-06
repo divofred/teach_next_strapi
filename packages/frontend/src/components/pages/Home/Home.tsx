@@ -148,10 +148,7 @@ const Home: React.FC<HomeTypes> = ({ users }) => {
           })}
         </ul>
       ) : (
-        <p>
-          По вашему запросу пока нет пользователей, попробуйте изменить фильтры или изменить данные
-          о доходе мужчины
-        </p>
+        <p>No pokemon found, try changing filters or lower the search power</p>
       )}
     </section>
   )

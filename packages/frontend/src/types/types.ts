@@ -5,7 +5,7 @@ export interface FormCommon {
   gender: 'male' | 'female'
   age: number
   city: 'Moscow' | 'Ekaterinburg' | 'Novosibirsk' | 'Kazan'
-  hair?: 'блонд' | 'брюнет' | 'шатен' | 'рыжий' | 'русый' | 'седой'
+  hair?: 'blonde' | 'dark' | 'ginger'
   height?: string
   weight?: string
   description?: string

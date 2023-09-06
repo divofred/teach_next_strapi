@@ -24,12 +24,12 @@ const Chats: React.FC = () => {
   return (
     <section className={styles.wrapper}>
       <div className={styles.userList}>
-        <h2>Диалоги:</h2>
+        <h2>Dialogues:</h2>
       </div>
       <div className={styles.messageBlock}>
         <ul ref={messageContainerRef}></ul>
         <input type="text" />
-        <button className={styles.sendMsg}>Отправить сообщение</button>
+        <button className={styles.sendMsg}>Send message</button>
       </div>
     </section>
   )

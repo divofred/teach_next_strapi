@@ -22,47 +22,47 @@ const CommonSchema = {
   age: yup
     .number()
     .typeError('type your age')
-    .required('возраст обязателен для заполнения')
-    .min(18, 'минимальный возраст - 18 лет')
-    .max(100, 'некорректный возраст'),
-  city: yup.string().notOneOf(['--Укажите город'], 'выберите город').required('укажите свой город'),
+    .required('age is required')
+    .min(18, 'minimum age is 18')
+    .max(100, 'invalid age'),
+  city: yup.string().notOneOf(['--City'], 'choose city').required('specify your city'),
   email: yup
     .string()
-    .required('введите почту')
-    .email('введите почту в правильном формате')
-    .matches(emailRegex, 'формат почты неверный'),
-  password: yup.string().required('введите пароль'),
-  accept: yup.bool().oneOf([true], 'прочитайте и согласитесь с правилами'),
+    .required('enter email')
+    .email('enter correct email format')
+    .matches(emailRegex, 'incorrect email format'),
+  password: yup.string().required('enter password'),
+  accept: yup.bool().oneOf([true], 'read and accept the rules'),
 }
 
 export const SchemaForMan = yup.object().shape({
   ...CommonSchema,
   minPower: yup
     .number()
-    .min(1000, 'мы не покажем его другим пользователям')
-    .max(2000000, 'некорректное значение')
-    .typeError('укажите ваш доход')
-    .required('укажите ваш доход'),
+    .min(1000, 'we will not show it to other users')
+    .max(2000000, 'invalid value')
+    .typeError('enter your power')
+    .required('enter your power'),
 })
 
 export const SchemaForWoman = yup.object().shape({
   ...CommonSchema,
   minDesiredPower: yup
     .number()
-    .min(1000, 'укажите ожидаемый доход мужчины')
-    .max(2000000, 'некорректное значение')
-    .typeError('укажите ожидаемый доход мужчины')
-    .required('укажите ожидаемый доход мужчины'),
+    .min(1000, 'enter expected power')
+    .max(2000000, 'invalid value')
+    .typeError('enter expected power')
+    .required('enter expected power'),
   height: yup
     .number()
-    .min(1, 'некорректное значение')
-    .max(300, 'некорректное значение')
-    .typeError('укажите рост')
-    .required('укажите рост'),
+    .min(1, 'invalid value')
+    .max(300, 'invalid value')
+    .typeError('enter height')
+    .required('enter height'),
   weight: yup
     .number()
-    .min(1, 'некорректное значение')
-    .max(300, 'некорректное значение')
-    .typeError('укажите вес')
-    .required('укажите вес'),
+    .min(1, 'invalid value')
+    .max(300, 'invalid value')
+    .typeError('enter weight')
+    .required('enter weight'),
 })

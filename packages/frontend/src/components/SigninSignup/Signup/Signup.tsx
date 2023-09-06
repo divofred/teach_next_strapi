@@ -121,7 +121,7 @@ const Signup: React.FC<SignupProps> = ({ handleClickLogin }) => {
                 className={styles.input}
                 type="text"
                 {...register('fullName')}
-                placeholder="имя*"
+                placeholder="name*"
                 id="fullName"
                 name="fullName"
               />
@@ -132,7 +132,7 @@ const Signup: React.FC<SignupProps> = ({ handleClickLogin }) => {
             </div>
             <div className={styles.selectWrapper}>
               <select {...register('city')} className={styles.select}>
-                <option value="--Укажите город">--City*</option>
+                <option value="--City">--City*</option>
                 <option value="Moscow">Moscow</option>
                 <option value="Ekaterinburg">Ekaterinburg</option>
                 <option value="Novosibirsk">Novosibirsk</option>
@@ -145,7 +145,7 @@ const Signup: React.FC<SignupProps> = ({ handleClickLogin }) => {
                 className={styles.input}
                 type="email"
                 {...register('email')}
-                placeholder="введите email"
+                placeholder="email"
                 id="email"
                 name="email"
               />
@@ -175,7 +175,7 @@ const Signup: React.FC<SignupProps> = ({ handleClickLogin }) => {
                 className={styles.input}
                 type="password"
                 {...register('password')}
-                placeholder="придумайте пароль"
+                placeholder="password"
                 id="password"
                 name="password"
               />
@@ -192,7 +192,7 @@ const Signup: React.FC<SignupProps> = ({ handleClickLogin }) => {
                   min={1000}
                   max={2000000}
                   {...register('minPower')}
-                  placeholder="ваш доход (руб. в мес.)*"
+                  placeholder="your power*"
                   id="minPower"
                   name="minPower"
                   onBlur={roundPowerTo1000}
@@ -213,7 +213,7 @@ const Signup: React.FC<SignupProps> = ({ handleClickLogin }) => {
                     min={1000}
                     max={2000000}
                     {...register('minDesiredPower')}
-                    placeholder="доход мужчины (руб. в мес.)*"
+                    placeholder="minimum power*"
                     id="minDesiredPower"
                     name="minDesiredPower"
                     onBlur={roundPowerTo1000}
@@ -236,7 +236,7 @@ const Signup: React.FC<SignupProps> = ({ handleClickLogin }) => {
                       {...register('height')}
                       id="height"
                       name="height"
-                      placeholder="рост *"
+                      placeholder="height*"
                     />
                     <label htmlFor="height" className={styles.inputLabel}>
                       height *
@@ -253,7 +253,7 @@ const Signup: React.FC<SignupProps> = ({ handleClickLogin }) => {
                       min={1}
                       max={150}
                       {...register('weight')}
-                      placeholder="вес *"
+                      placeholder="weight*"
                       id="weight"
                       name="weight"
                     />

@@ -6,7 +6,6 @@ import React, { FC } from 'react'
 
 import { client } from '@/src/lib/client'
 
-import { useActions } from '@/src/hooks/useActions'
 import { useTypedSelector } from '@/src/hooks/useTypedSelector'
 
 import { UserCardTypes } from './_types'

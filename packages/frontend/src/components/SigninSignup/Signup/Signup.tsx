@@ -4,7 +4,6 @@ import { setCookie } from 'cookies-next'
 import useEmblaCarousel, { EmblaCarouselType, EmblaOptionsType } from 'embla-carousel-react'
 import { useRouter } from 'next/router'
 import React, { useCallback, useEffect, useState } from 'react'
-import ReCAPTCHA, { ReCAPTCHAProps } from 'react-google-recaptcha'
 import { useForm } from 'react-hook-form'
 
 import { client } from '@/src/lib/client'
@@ -24,32 +23,19 @@ const options: EmblaOptionsType = { align: 'center' }
 const slides = [
   {
     img: '/swiper/man_woman.jpg',
-    rules: [
-      'Skade - для тех, кто нацелен найти отношения с перспективой брака:',
-      'состоятельных мужчин и честных девушек',
-    ],
+    rules: ['1 pokemon title', '1 paragrapgh'],
   },
   {
     img: '/swiper/girl_sitting4.jpg',
-    rules: [
-      'Девушки должны прикрепить 3 фотографии, где четко видно лицо',
-      'администрация вручную проверяет фейков и виртов',
-    ],
+    rules: ['2 pokemon title', '2 paragrapgh'],
   },
   {
     img: '/swiper/man_sitting2.jpg',
-    rules: [
-      'Общение для мужчин доступно после оплаты аккаунта',
-      'Никаких подписок, плата взимается один раз',
-      'Цена MVP версии 5000 рублей - присоединяйся сегодня и навсегда!',
-    ],
+    rules: ['3 pokemon title', '3 paragrapgh'],
   },
   {
     img: '/swiper/man_woman3.jpg',
-    rules: [
-      'На сайте действует строгая система банов',
-      'Соблюдайте правила общения онлайн и при встрече',
-    ],
+    rules: ['4 pokemon title', '4 paragrapgh'],
   },
 ]
 
@@ -81,7 +67,6 @@ const Signup: React.FC<SignupProps> = ({ handleClickLogin }) => {
     formState: { errors, isValid },
   } = useForm<Man | Woman>({
     mode: 'onBlur',
-    // TODO fix types
     // @ts-ignore
     resolver: yupResolver(gender === 'male' ? SchemaForMan : SchemaForWoman),
   })
@@ -101,9 +86,9 @@ const Signup: React.FC<SignupProps> = ({ handleClickLogin }) => {
     } catch (e) {}
   }
 
-  const roundSalaryTo1000 = (e: React.FocusEvent<HTMLInputElement>) => {
+  const roundPowerTo1000 = (e: React.FocusEvent<HTMLInputElement>) => {
     const inputValue = e.currentTarget.value
-    const roundedValue = Math.floor(Number(inputValue) / 1000) * 1000 // округление до тысячи
+    const roundedValue = Math.floor(Number(inputValue) / 1000) * 1000
     const name = e.currentTarget.name as Parameters<typeof setValue>[0]
     setValue(name, roundedValue, { shouldValidate: true })
   }
@@ -210,7 +195,7 @@ const Signup: React.FC<SignupProps> = ({ handleClickLogin }) => {
                   placeholder="ваш доход (руб. в мес.)*"
                   id="minPower"
                   name="minPower"
-                  onBlur={roundSalaryTo1000}
+                  onBlur={roundPowerTo1000}
                 />
                 <label htmlFor="minPower" className={styles.inputLabel}>
                   your power*
@@ -231,7 +216,7 @@ const Signup: React.FC<SignupProps> = ({ handleClickLogin }) => {
                     placeholder="доход мужчины (руб. в мес.)*"
                     id="minDesiredPower"
                     name="minDesiredPower"
-                    onBlur={roundSalaryTo1000}
+                    onBlur={roundPowerTo1000}
                   />
                   <label htmlFor="minDesiredPower" className={styles.inputLabel}>
                     desired power*
@@ -294,7 +279,7 @@ const Signup: React.FC<SignupProps> = ({ handleClickLogin }) => {
           </button>
         </form>
         <p className={styles.switch}>
-          Уже есть аккаунт?<span onClick={handleClickLogin}>Войти</span>
+          Have an account?<span onClick={handleClickLogin}>Login</span>
         </p>
       </div>
       <div className={styles.swiper}>

@@ -3,7 +3,6 @@ import React from 'react'
 import { useState } from 'react'
 
 import Signin from './Signin/Signin'
-// styles
 import Signup from './Signup/Signup'
 
 const SigninSignup: NextPage = () => {

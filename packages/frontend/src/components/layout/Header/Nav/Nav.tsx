@@ -1,4 +1,3 @@
-import cn from 'classnames'
 import { getCookie } from 'cookies-next'
 import { decodeJwt } from 'jose'
 import Link from 'next/link'
@@ -17,7 +16,6 @@ import styles from './Nav.module.scss'
 const Nav: FC = () => {
   const user = useTypedSelector((state) => state.user)
   const cookie = getCookie('token')
-  const router = useRouter()
   const { logoutUser, setUser } = useActions()
   const hasMounted = useHasMounted()
   const [logined, setLogined] = useState<boolean>()

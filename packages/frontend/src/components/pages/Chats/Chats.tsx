@@ -1,12 +1,6 @@
-import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React, { useContext, useEffect, useRef, useState } from 'react'
-import io from 'socket.io-client'
+import React, { useEffect, useRef } from 'react'
 
-import { client } from '@/src/lib/client'
-
-import { useActions } from '@/src/hooks/useActions'
-import { useHasMounted } from '@/src/hooks/useHasMounted'
 import { useTypedSelector } from '@/src/hooks/useTypedSelector'
 
 import styles from './Chats.module.scss'

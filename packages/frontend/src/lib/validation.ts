@@ -15,13 +15,13 @@ export const loginSchema: any = yup.object().shape({
 const CommonSchema = {
   fullName: yup
     .string()
-    .required('обязательное поле')
-    .matches(nameRegExp, 'только латиница и кириллица')
-    .min(2, 'не менее 2-х символов')
-    .max(15, 'не более 15 символов'),
+    .required('required field')
+    .matches(nameRegExp, 'only latin or cyrillic letters')
+    .min(2, 'min 2 letters')
+    .max(15, 'max 15 letters'),
   age: yup
     .number()
-    .typeError('укажите ваш возраст')
+    .typeError('type your age')
     .required('возраст обязателен для заполнения')
     .min(18, 'минимальный возраст - 18 лет')
     .max(100, 'некорректный возраст'),

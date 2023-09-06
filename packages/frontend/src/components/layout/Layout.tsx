@@ -25,7 +25,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             fontSize: '1rem',
           }}
         >
-          Правила
+          Rules
         </Link>
       </main>
     </>
